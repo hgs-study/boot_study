@@ -9,22 +9,32 @@
 </body>
 
 <script>
+    // async function exceptionTest() {
+    //     fetch("/exceptionTest", {
+    //         method: 'get'
+    //     })
+    //     .then(res => {
+    //         return res.json()
+    //     })
+    //     .then(data => {
+    //         if(data.ok == false)
+    //             alert(data.message);
+    //         else
+    //             alert("정상적으로 처리됐습니다.")
+    //     })
+    //     .catch(err => {
+    //         console.error(err);
+    //     });
+    // }
+
     async function exceptionTest() {
-        fetch("/exceptionTest", {
-            method: 'get'
-        })
-        .then(res => {
-            return res.json()
-        })
-        .then(data => {
-            if(data.ok == false)
-                alert(data.message);
-            else
-                alert("정상적으로 처리됐습니다.")
-        })
-        .catch(err => {
-            console.error(err);
-        });
+        const res = await fetch("/exceptionTest",{method:'get'});
+        console.log(res.ok);
+        const data = await res.json();
+        if(res.ok == true)
+            console.log(data.message);
+        if(res.ok ==false)
+            alert(data.message)
     }
 </script>
 </html>
