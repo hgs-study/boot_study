@@ -13,6 +13,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = IllegalArgumentException.class)
     public ResponseEntity<?> handleArgumentException(IllegalArgumentException e){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(e.getMessage());
+                .body(messageDTO.builder().message(e.getMessage()).build());
     }
+
+
 }

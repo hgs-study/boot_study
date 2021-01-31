@@ -21,5 +21,9 @@ public class indexController {
         return "/index03";
     }
 
+    @GetMapping(value = "/exceptionTestPage")
+    public String exceptionTestPage(){
+        return "exception/exceptionTest";
+    }
 
 }

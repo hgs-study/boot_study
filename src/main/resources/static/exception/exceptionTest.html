@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <a href="javascript:exceptionTest()">ExceptionTest</a>
+</body>
+
+<script>
+    async function exceptionTest() {
+        fetch("/exceptionTest", {
+            method: 'get'
+        })
+        .then(res => {
+            return res.json()
+        })
+        .then(data => {
+            if(data.ok == false)
+                alert(data.message);
+            else
+                alert("정상적으로 처리됐습니다.")
+        })
+        .catch(err => {
+            console.error(err);
+        });
+    }
+</script>
+</html>
