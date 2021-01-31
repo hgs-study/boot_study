@@ -10,5 +10,10 @@ public class apiController {
     public String hello(){
         return "hello";
     }
+
+    @GetMapping(value="/jsonTest")
+    public String[] helloArr(){
+        return new String[]{"Hello","hi"};
+    }
 }
 
