@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.swing.text.html.Option;
 import java.util.Optional;
@@ -50,5 +51,33 @@ public class MemoRepositoryTests {
 
 //        String result2 = Optional.ofNullable(str).orElseThrow(() -> new IllegalArgumentException("dd"));
 
+    }
+
+    @Transactional
+    @Test
+    public void testSelect2(){
+        Long mno = 100L;
+
+        Memo memo = memoRepository.getOne(mno);
+
+        System.out.println("===================");
+        System.out.println(memo);
+    }
+
+    //save는 미리 객체가 있는지 select 해보고 있으면 update / 없으면 insert 함
+    @Test
+    public void testUpdate(){
+        Memo memo = Memo.builder().mno(100L).memoText("Update Text").build();
+
+        System.out.println(memoRepository.save(memo));
+    }
+
+    //org.springframework.dao.EmptyResultDataAccessException 실패시
+    @Test
+    public void testDelete(){
+        Long mno = 100L;
+
+        memoRepository.deleteById(mno);
+        
     }
 }
