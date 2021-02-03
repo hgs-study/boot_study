@@ -6,6 +6,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.swing.text.html.Option;
@@ -78,6 +81,14 @@ public class MemoRepositoryTests {
         Long mno = 100L;
 
         memoRepository.deleteById(mno);
-        
+    }
+
+
+    @Test
+    public void testPageDefault(){
+        Pageable pageable = PageRequest.of(0,10);
+        Page<Memo> result = memoRepository.findAll(pageable);
+        System.out.println("pageable : "+pageable);
+        System.out.println("result : "+result);
     }
 }
