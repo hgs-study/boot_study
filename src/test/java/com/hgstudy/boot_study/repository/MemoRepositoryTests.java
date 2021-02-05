@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.swing.text.html.Option;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -128,8 +129,19 @@ public class MemoRepositoryTests {
         Pageable page = PageRequest.of(0,10,sortAll);
 
         Page<Memo> memo = memoRepository.findAll(page);
+        List<Memo> memos = memoRepository.findAll(sortAll); //리스트
 
         for(Memo memoList : memo)
             System.out.println("memoList :"+memoList);
+    }
+
+    @Test
+    @DisplayName("쿼리 메소드 테스트")
+    public void testQueryMethod(){
+        List<Memo> memo = memoRepository.findByMnoBetweenOrderByMnoDesc(70L,80L);
+
+        for(Memo memo1 : memo){
+            System.out.println("findByMnoBetweenOrderByMnoDesc 테스트 :"+ memo1);
+        }
     }
 }
