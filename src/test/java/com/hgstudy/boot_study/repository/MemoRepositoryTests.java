@@ -144,4 +144,23 @@ public class MemoRepositoryTests {
             System.out.println("findByMnoBetweenOrderByMnoDesc 테스트 :"+ memo1);
         }
     }
+
+    @Test
+    @DisplayName("정렬 간소화")
+    public void sortPageTest(){
+        Pageable pageable = PageRequest.of(0,10,Sort.by("mno").descending());
+
+        Page<Memo> memo = memoRepository.findByMnoBetween(10L,60L, pageable);
+        for (Memo memoTest : memo)
+            System.out.println("memoTest : "+memoTest);
+    }
+
+    @Test
+    @DisplayName("Mno desc 정렬 테스트")
+    public void testDesc(){
+        List<Memo> memo = memoRepository.findByOrderByMnoDesc();
+        for(Memo memo1 : memo)
+            System.out.println("memo : "+memo1);
+    }
+
 }
