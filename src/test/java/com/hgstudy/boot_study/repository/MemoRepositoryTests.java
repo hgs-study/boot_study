@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.swing.text.html.Option;
@@ -161,6 +162,26 @@ public class MemoRepositoryTests {
         List<Memo> memo = memoRepository.findByOrderByMnoDesc();
         for(Memo memo1 : memo)
             System.out.println("memo : "+memo1);
+    }
+
+    @Test
+    @Transactional
+    //@Commit
+    @DisplayName("10번 보다 작은 데이터 삭제")
+    public void deleteTest(){
+        memoRepository.deleteMemoByMnoLessThan(10L); //deleteBy 실무에서 잘 사용 x, delete문을 하나씩 수행
+        List<Memo> memo = memoRepository.findAll();
+
+        for(Memo memoList : memo)
+            System.out.println("memoList :"+memoList); //=>10 11 12 ...99번
+    }
+
+    @Test
+    @DisplayName("@Query 텟트")
+    public void queryTest(){
+        List<Memo> memo = memoRepository.getQueryList();
+        for (Memo memoUnit : memo)
+            System.out.println("memos :"+memoUnit);
     }
 
 }
