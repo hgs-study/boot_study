@@ -1,13 +1,13 @@
 package com.hgstudy.boot_study.dto;
 
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+@Data
 @Builder(toBuilder = true)
 public class SampleDTO {
     private Long sno;

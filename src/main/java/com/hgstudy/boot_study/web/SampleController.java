@@ -18,7 +18,13 @@ import java.util.stream.IntStream;
 public class SampleController {
 
     @GetMapping("/ex1")
-    public void ex1(Model model){
+    public void ex1(){
+        log.info("ex1..........");
+
+    }
+
+    @GetMapping({"/ex2"})
+    public void ex2(Model model){
         log.info("ex1..........");
         List<SampleDTO> list = IntStream.rangeClosed(1,20).asLongStream()
                                 .mapToObj(i->{
@@ -28,7 +34,7 @@ public class SampleController {
                                                 .last("Last.."+i)
                                                 .regTime(LocalDateTime.now())
                                                 .build();
-                                            return dto;
+                                    return dto;
                                     }).collect(Collectors.toList());
         model.addAttribute("list",list);
     }
